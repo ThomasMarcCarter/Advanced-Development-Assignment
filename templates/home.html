@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% set active_page = "home" %} {% block content %} <section class="shoptitle container">
+    <!-- Shop Title -->
+    <h2 class="section-title">Games Catalog:</h2>
+    <!-- Shop Grid-->
+    <div class="shop-content"> {% for i in jsondata %} <div class="product-box">
+        <!-- Cover Art for Game -->
+        <img src={{i['coverArt']}} alt="Cover Art" class="product-img">
+        <!-- Title of Game -->
+        <h2 class="product-title">{{ i['gameTitle']}}</h2>
+        <div>
+          <!-- Price of Game -->
+          <span class="price">£{{ i['price']}}</span>
+        </div>
+        <!-- Add to Cart Button -->
+        <i class="bx bx-shopping-bag add-cart"></i>
+      </div> {% endfor %} </div>
+  </section> {% endblock %}

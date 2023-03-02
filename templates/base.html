@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-tofit=no" />
+    <meta name="description" content="Unicorn Games" />
+    <title>Unicorn Games</title>
+    <link rel="icon" type="image/x-icon" href="/static/kindpng_4143053.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <!-- Custom styles -->
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Font Awesome-->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Box Icons-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  </head>
+  <!-- Jinja2 stuff related to generating nav and setting active state. Add more pages
+here! --> {% set navigation_bar = [('/', 'home', 'Home'), ('/about', 'about', 'About')] -%} {% set active_page =
+  active_page|default('home') -%} {% set account_bar = [('/cart', 'cart', 'Cart'),('/login','login', 'Login'), ('/upload', 'upload', 'CRUD')] -%} <body>
+    <header>
+      <div class="nav container">
+        <!-- Name and Logo--> {% for href, id, caption in navigation_bar %} {% if id == "home"
+        %} <div>
+          <img id="navlogo" src="/static/kindpng_4143053.png" />
+          <a href="{{ href|e }}" class="titlelogo">Unicorn Games</a>
+          <!-- Links in Navbar -->
+        </div> {% else %} {% endif %} {% endfor %}
+        <!-- NavBar Items --> {% for href, id, caption in navigation_bar %} <div>
+          <a class="navtext" href="{{ href|e }}">{{ caption|e }}</a>
+        </div> {% endfor %} <div> {% for href, id, caption in account_bar %} {% if id == "upload"
+                %} <div>
+            <a class="navtext" href="{{ href|e }}">{{ caption|e }}</a>
+          </div> {% else %} {% endif %} {% endfor %} </div>
+        <!-- Cart Logo--> {% for href, id, caption in account_bar %} {% if id == "cart"
+            %} <a class="bx bx-shopping-bag carticon" id="cart-icon"></a> {% else %} {% endif %} {% endfor %} <div>
+          <!-- Login/Register Buttons-->
+          <div> {% for href, id, caption in account_bar %} {% if id == "login"
+                %} <a href="{{ href|e }}">
+              <button class="btn-login"> {{ caption|e }}</button>
+            </a> {% else %} {% endif %} {% endfor %} </div>
+        </div>
+        <!-- Cart Pullout-->
+        <div class="cart">
+          <h2 class="cart-title">Cart:</h2>
+          <!--Cart Items-->
+          <div class="cart-content"></div>
+          <div class="cart-total">
+            <div class="cart-total-title">Total:</div>
+            <div class="cart-total-price">£0</div>
+          </div>
+          <!-- Purchase Button-->
+          <!-- {% for href, id, caption in account_bar %} {% if id == "cart"
+            %}
+            <a href="{{ href|e }}"><button href="{{ href|e }}" type="button" class="btn-purchase">Confirm Purchase</button></a>
+            {% else %}
+            {% endif %} {% endfor %} -->
+          <a href="{{ href|e }}">
+            <button onclick="purchaseButton()" type="button" class="btn-purchase">Confirm Purchase</button>
+          </a>
+          <!-- Close Cart-->
+          <i class="bx bx-x" id="btn-cart-close"></i>
+    </header>
+    <!-- Where content extends from -->
+    <main role="main">
+      <!-- Content --> {% block content %} {% endblock %}
+    </main>
+    <!-- Bootstrap core JavaScript
+ ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery3.3.1.slim.min.js" integrity="sha384-
+q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="ano
+nymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/poppe
+r.min.js" integrity="sha384-
+ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="ano
+nymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.m
+in.js" integrity="sha384-
+ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="ano
+nymous"></script>
+    <script src="/static/cart.js"></script>
+  </body>
+</html>

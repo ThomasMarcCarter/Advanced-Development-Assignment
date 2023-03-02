@@ -1,0 +1,47 @@
+{% extends "base.html" %} {% set active_page = "login" %} {% block content %}
+<!doctype html>
+<html>
+  <head>
+    <title>Datastore and Firebase Auth Example</title>
+    <!-- Import Firebase Auth UI JavaScript Library -->
+    <script src="https://www.gstatic.com/firebasejs/ui/4.5.0/firebase-ui-auth.js"></script>
+    <!-- Import Firebase Auth UI CSS Stylesheet -->
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.5.0/firebase-ui-auth.css">
+    <!-- Import Custom JavaScript for this Page -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <!-- Import Custom CSS for this Page -->
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <h1>Login:</h1>
+    <!-- Firebase Auth Container -->
+    <div id="firebaseui-auth-container"></div>
+    <!-- Sign Out Button -->
+    <button id="sign-out" hidden=true>Sign Out</button>
+  </body>
+  <!-- Import Firebase App JavaScript Library -->
+  <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
+  <!-- Import Firebase Auth JavaScript Library -->
+  <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-auth.js"></script>
+  <!-- Import Firebase Analytics JavaScript Library -->
+  <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-analytics.js"></script>
+  <!-- Import Firebase Storage JavaScript Library -->
+  <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-storage.js"></script>
+  <!-- Import Custom JavaScript for Uploading Files -->
+  <script src="{{ url_for('static', filename='upload.js') }}"></script>
+  <script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDA6H2gZGBZfR3UUkcP0aZqQlBwoCdQNTo",
+      authDomain: "ad-project-afc20.firebaseapp.com",
+      projectId: "ad-project-afc20",
+      storageBucket: "ad-project-afc20.appspot.com",
+      messagingSenderId: "982529345600",
+      appId: "1:982529345600:web:f67051b95502900975f7a5",
+      measurementId: "G-QS1C8KE2XD"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+</html> {% endblock %}

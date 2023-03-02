@@ -1,0 +1,69 @@
+{% extends "base.html" %} {% block content %} <html>
+  <head>
+    <title>Firestore Cloud Storage Example</title>
+    <!-- Import Firebase App JavaScript Library -->
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
+    <!-- Import Firebase Auth JavaScript Library -->
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-auth.js"></script>
+    <!-- Import Firebase Storage JavaScript Library -->
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-storage.js"></script>
+    <!-- Import Custom CSS for this Page -->
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Import Firebase Auth UI CSS Stylesheet -->
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.5.0/firebase-ui-auth.css">
+  </head>
+  <body>
+    <section class="container">
+      <div class="shop-content">
+        <div>
+          <h1>Add a game to the database. </h1>
+          <div id="main">
+            <!-- Form for adding a game to the database -->
+            <form method="POST" action="/addgame">
+              <label for="gameTitle">Game Title:</label>
+              <input type="text" name="gameTitle">
+              <br />
+              <label for="coverArt">Cover Art:</label>
+              <input id="cover-art" name="coverArt" readonly></input>
+              <!-- File selection and upload progress -->
+              <div>
+                <input type="file" id="fileButton" value="upload" />
+                <progress id="uploader" value="0" max="100">0%</progress>
+              </div>
+              <label for="price">Price:</label>
+              <input type="text" name="price">
+              <br />
+              <input type="submit">
+            </form>
+          </div>
+        </div>
+        <div>
+          <h1>Remove a game from the database. </h1>
+          <div id="main">
+            <!-- Form for removing a game from the database -->
+            <form method="POST" action="/deletegame">
+              <label for="gameTitle">Game Title:</label>
+              <input type="text" name="gameTitle">
+              <br />
+              <input type="submit">
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Initialize Firebase -->
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyDA6H2gZGBZfR3UUkcP0aZqQlBwoCdQNTo",
+        authDomain: "ad-project-afc20.firebaseapp.com",
+        projectId: "ad-project-afc20",
+        storageBucket: "ad-project-afc20.appspot.com",
+        messagingSenderId: "982529345600",
+        appId: "1:982529345600:web:f67051b95502900975f7a5",
+        measurementId: "G-QS1C8KE2XD"
+      };
+      firebase.initializeApp(firebaseConfig);
+    </script>
+    <!-- Import Custom JavaScript for Uploading Files -->
+    <script src="{{ url_for('static', filename='upload.js') }}"></script>
+  </body> {% endblock %}
